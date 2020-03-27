@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bd {
+            /* border: 1px dotted orange; */
+            padding: 20px;
+            width: 260px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .bd input[type='text'] {
+            width: 200px;
+            height: 30px;
+            border-radius: 6px;
+            border: 1px solid #000;
+            outline: aqua;
+            text-indent: 1.5em;
+        }
+
+        .bd input:first-child {
+            margin-bottom: 10px;
+        }
+
+        .bd .checkbox {
+            font-size: 10px;
+            color: rgb(80, 78, 78);
+            margin: 14px 0;
+        }
+
+        .bd .checkbox input[type='checkbox'] {
+            display: inline-block;
+            position: relative;
+            top: 2px;
+            margin-right: 2px;
+            cursor: pointer;
+        }
+
+        /* .bd .checkbox i {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #bbb;
+            border-radius: 2px;
+            position: relative;
+            top: 2px;
+            margin-right: 2px;
+            cursor: pointer;
+        } */
+        .bd button {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #000;
+            border-radius: 2px;
+        }
+
+        .bd button.login {
+            margin-right: 30px;
+            background-color: rgb(0, 47, 255);
+            color: #fff;
+        }
+
+        .bd button.reg {
+            background-color: rgb(199, 202, 202);
+        }
+
+        .bd .message {
+            width: 150px;
+            padding: 6px;
+            color: orange;
+            font-size: 12px;
+            border: 1px solid orange;
+            border-radius: 2px;
+            background-color: rgb(255, 253, 228);
+            position: absolute;
+            bottom: 52px;
+            right: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 制作一个效果：鼠标触碰复选框时，显示“为了信息安全，请勿在网吧或公用电脑上使用此功能！”字样的提示盒子。鼠标离开时，盒子隐藏。 -->
+    <form id="bd" class="bd">
+        <input type="text" placeholder="邮箱账号或手机号">
+        <input type="text" placeholder="密码">
+        <p class="checkbox">
+            <input type="checkbox" id="checkbox">
+            十天内免登录
+        </p>
+        <button id="login" class="login">登录</button>
+        <button id="reg" class="reg">去注册</button>
+        <p class="message" id="message">为了信息安全，请勿在网吧或公用电脑上使用此功能！</p>
+    </form>
+    <script>
+        var checkbox = document.getElementById('checkbox');
+        var message = document.getElementById('message');
+        checkbox.onmouseenter = function () {
+            message.style.display = 'block';
+        }
+        checkbox.onmouseleave = function () {
+            message.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

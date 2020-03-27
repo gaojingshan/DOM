@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box .p1 {
+            width: 80px;
+            height: 80px;
+            background-color: aqua;
+        }
+
+        .box .p2 {
+            width: 80px;
+            height: 80px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="box">
+        <p class="p1" id="p1"  data-x='18'></p>
+    </div>
+    <button id="btn1">点击换类名</button>
+    <button id="btn2">点击自定义属性值加1</button>
+    <script>
+        // *****************************************************
+        var p1 = document.querySelector('#box #p1');
+        var btn1 = document.querySelector('#btn1');
+        btn1.onclick = function () {
+            p1.className = 'p2';  //改类名
+        }
+
+        // *****************************************************
+        var btn2 = document.querySelector('#btn2');
+        var n = p1.getAttribute('data-x');  //得到自定义属性的值
+        btn2.onclick = function () {
+            p1.setAttribute('data-x', ++n);  //设置自定义属性的值
+        }
+
+        // *****************************************************
+        console.log(p1.style.width);// 只能获得行内样式
+        // 什么样式表的都能得到
+        console.log(getComputedStyle(p1).width);
+        console.log(getComputedStyle(p1)['width']);
+        
+       
+        
+    </script>
+</body>
+
+</html>
