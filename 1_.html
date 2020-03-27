@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            overflow: hidden;
+        }
+
+        .box p {
+            float: left;
+            width: 60px;
+            height: 60px;
+            border: 1px solid #000;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">按我让小花的父亲变绿</button>
+    <button id="btn2">按我让小花的前一个兄弟变粉</button>
+    <button id="btn3">按我让小花的后一个兄弟变红</button>
+    <button id="btn4">按我让盒子的第一个子元素变蓝</button>
+    <button id="btn5">按我让盒子的最后一个子元素变黑</button>
+    <button id="btn6">让所有子节点都变橙</button>
+
+    <div class="box" id="box">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p class="xiaohua">小花</p>
+        <p></p>
+        <p></p>
+    </div>
+    <script>
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.getElementById('btn2');
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+        var btn5 = document.getElementById('btn5');
+        var btn6 = document.getElementById('btn6');
+        var box = document.getElementById('box');
+        var xiaohua = document.querySelector('.xiaohua');
+        btn1.onclick = function () {
+            xiaohua.parentNode.style.backgroundColor = 'green';
+        }
+        btn2.onclick = function () {
+            xiaohua.previousElementSibling.style.backgroundColor = 'pink'
+        }
+        btn3.onclick = function () {
+            xiaohua.nextElementSibling.style.backgroundColor = 'red'
+        }
+        btn4.onclick = function () {
+            box.firstElementChild.style.backgroundColor = 'blue'
+        }
+        btn5.onclick = function () {
+            box.lastElementChild.style.backgroundColor = 'black'
+        }
+        btn6.onclick = function () {
+            var childNodes = box.childNodes;
+            for (var i = 0; i < childNodes.length; i++) {
+                if (childNodes[i].nodeType == 1) {
+
+                    childNodes[i].style.backgroundColor = 'orange'
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
