@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button>
+    <script>
+        var btns = document.getElementsByTagName('button');
+        // 获得序号
+        // ① IIFE叫做“立即执行匿名函数”
+        for (var i = 0; i < btns.length; i++) {
+            (function (i) {  //形参,局部变量
+                btns[i].onclick = function () {  // 对于这个function来说，i已经变为了它的闭包中的i
+                    alert(i)
+                }
+            })(i)//实参
+        }
+        // ②把全局变量var 改为 let
+        /* for (let i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                alert(i)
+            }
+        } */
+    </script>
+</body>
+
+</html>
