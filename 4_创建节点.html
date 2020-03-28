@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="kuang">
+    <button id="btn1">点击在后面添加元素</button>
+    <button id="btn2">点击在前面添加元素</button>
+    <ul id="list"></ul>
+    <script>
+        var kuang = document.getElementById('kuang');
+        var list = document.getElementById('list');
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        btn1.onclick = function () {
+            // 创建li标签
+            var li = document.createElement('li');
+            // 改变li里面的内容为kuang的内容
+            li.innerText = kuang.value;
+            // 创建的节点是孤儿节点，必须要添加到DOM树中
+            list.appendChild(li);
+            // 清除文本框内容
+            kuang.value = '';
+            // 文本框聚焦
+            kuang.focus();
+        }
+        btn2.onclick = function () {
+            // 创建li标签
+            var li = document.createElement('li');
+            // 改变li里面的内容为kuang的内容
+            li.innerText = kuang.value;
+            // 创建的
+            list.insertBefore(li, list.firstChild);
+            // 清除文本框内容
+            kuang.value = '';
+            // 文本框聚焦
+            kuang.focus();
+        }
+    </script>
+</body>
+
+</html>

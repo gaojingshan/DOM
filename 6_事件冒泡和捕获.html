@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box3 {
+            width: 200px;
+            height: 200px;
+            padding: 50px;
+            border: 1px solid #000;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            padding: 50px;
+            border: 1px solid #000;
+        }
+
+        #box1 {
+            width: 60px;
+            height: 60px;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box3">
+        <div id="box2">
+            <div id="box1">
+                <button id="btn">点击</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+        var btn = document.getElementById('btn');
+        /* box1.onclick = function(){
+            alert('box1的点击事件');
+        }
+        box2.onclick = function(){
+            alert('box2的点击事件');
+        }
+        box3.onclick = function(){
+            alert('box3的点击事件');
+        }
+        btn.onclick = function(){
+            alert('btn的点击事件');
+        } */
+        // 事件的捕获和冒泡，不管书写的先后顺序，先下后上，先捕获在冒泡， 最内层不区分冒泡捕获，谁写在上面先运行谁，不写最后一个参数，默认false，是冒泡阶段
+        box2.addEventListener('click', function () {
+            alert('我是box2冒泡阶段');
+        }, false)
+        box1.addEventListener('click', function () {
+            alert('我是box1冒泡阶段');
+        }, false)
+        box2.addEventListener('click', function () {
+            alert('我是box2捕获阶段');
+        }, true)
+        box1.addEventListener('click', function () {
+            alert('我是box1捕获阶段');
+        }, true)
+        box3.addEventListener('click', function () {
+            alert('我是box3冒泡阶段');
+        }, false)
+
+        btn.addEventListener('click', function () {
+            alert('我是btn冒泡阶段');
+        }, false)
+        box3.addEventListener('click', function () {
+            alert('我是box3捕获阶段');
+        }, true)
+
+        btn.addEventListener('click', function () {
+            alert('我是btn捕获阶段');
+        }, true)
+
+    </script>
+</body>
+
+</html>

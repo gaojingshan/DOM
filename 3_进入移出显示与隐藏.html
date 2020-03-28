@@ -36,6 +36,7 @@
             font-size: 10px;
             color: rgb(80, 78, 78);
             margin: 14px 0;
+            cursor: pointer;
         }
 
         .bd .checkbox input[type='checkbox'] {
@@ -85,7 +86,10 @@
             position: absolute;
             bottom: 52px;
             right: 10px;
-            display: none;
+            /* display: none; */
+            opacity: 0;
+            transition: all 2s;
+
         }
     </style>
 </head>
@@ -95,10 +99,12 @@
     <form id="bd" class="bd">
         <input type="text" placeholder="邮箱账号或手机号">
         <input type="text" placeholder="密码">
-        <p class="checkbox">
-            <input type="checkbox" id="checkbox">
-            十天内免登录
-        </p>
+        <label>
+            <p class="checkbox" id="checkbox">
+                <input type="checkbox">
+                十天内免登录
+            </p>
+        </label>
         <button id="login" class="login">登录</button>
         <button id="reg" class="reg">去注册</button>
         <p class="message" id="message">为了信息安全，请勿在网吧或公用电脑上使用此功能！</p>
@@ -107,10 +113,12 @@
         var checkbox = document.getElementById('checkbox');
         var message = document.getElementById('message');
         checkbox.onmouseenter = function () {
-            message.style.display = 'block';
+            // message.style.display = 'block';
+            message.style.opacity = 1;
         }
         checkbox.onmouseleave = function () {
-            message.style.display = 'none';
+            // message.style.display = 'none';
+            message.style.opacity = 0;
         }
     </script>
 </body>

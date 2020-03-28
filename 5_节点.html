@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1,
+        #box2 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        #box1 p,
+        #box2 p {
+            width: 100px;
+            height: 40px;
+            background-color: aqua;
+            margin-bottom: 10px;
+        }
+
+        #box3 {
+            width: 100px;
+            height: 80px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <p>元素1</p>
+        <p>元素2</p>
+    </div>
+    <div id="box2">
+        <p id="para">元素3</p>
+        <p>元素4</p>
+    </div>
+    <div id="box3"></div>
+    <button id="btn1">点击删除box3元素</button>
+    <button id="btn2">点击移动para元素,追加到box2元素最后面</button>
+    <button id="btn3">点击移动para元素，添加到box2的最前面</button>
+    <button id="btn4">克隆para元素</button>
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+
+        var para = document.getElementById('para');
+
+        // 删除box3元素
+        btn1.onclick = function () {
+            // 必须找到父亲，再删除，只有父亲可以删除儿子
+            // document.body.removeChild(box3);
+            // 不需要找到父亲，就可以删除
+            box3.parentNode.removeChild(box3);
+        }
+
+        // 移动元素，将para元素移动到box1中
+        btn2.onclick = function () {
+            box1.appendChild(para);
+        }
+        btn3.onclick = function () {
+            box1.insertBefore(para, box1.firstChild)
+        }
+
+        // 克隆元素
+        btn4.onclick = function () {
+            // 克隆，圆括号中只要加一个true，就是深克隆，
+            // 深克隆：这个元素和里面的文字、子元素都会被一并克隆
+            var cNode = para.cloneNode(true);
+            // 克隆出来的节点是孤儿节点，需要上树
+            box1.appendChild(cNode)
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
