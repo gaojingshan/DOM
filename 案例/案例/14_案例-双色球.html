@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            width: 614px;
+            height: 402px;
+            margin: 50px auto;
+        }
+
+        .redbox {
+            float: left;
+            width: 380px;
+            height: 280px;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+
+        .bluebox {
+            padding: 10px;
+            float: left;
+            width: 190px;
+            height: 280px;
+            border: 1px solid #000;
+        }
+
+        .redbox p {
+            float: left;
+            width: 35px;
+            height: 35px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 35px;
+            color: white;
+            background: -webkit-linear-gradient(top left, rgb(204, 203, 203), rgb(105, 105, 105));
+            cursor: pointer;
+        }
+
+        .redbox p.cur {
+            background: -webkit-linear-gradient(top left, red, rgb(88, 14, 14));
+        }
+
+        .bluebox p {
+            float: left;
+            width: 35px;
+            height: 35px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 35px;
+            color: white;
+            background: -webkit-linear-gradient(top left, rgb(204, 203, 203), rgb(105, 105, 105));
+            cursor: pointer;
+        }
+
+        .bluebox p.cur {
+            background: -webkit-linear-gradient(top left, rgb(29, 108, 212), rgb(14, 24, 122));
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div id="redbox" class="redbox"></div>
+        <div id="bluebox" class="bluebox"></div>
+        <h3 id="wenzi">当前选择的红球是：</h3>
+        <button id="suiji">随机一注</button>
+    </div>
+    <script>
+        // 得到redbox盒子
+        var redbox = document.getElementById('redbox');
+        var wenzi = document.getElementById('wenzi');
+        var suiji = document.getElementById('suiji');
+
+        // 创建33个红球
+        for (var i = 1; i <= 33; i++) {
+            // 创建p标签
+            var p = document.createElement('p');
+            // 给p标签内部添加数字
+            p.innerText = i;
+            // 给这个p添加一个data-n属性
+            p.setAttribute('data-n', i);
+            // 追加孤儿节点
+            redbox.appendChild(p);
+        }
+
+        // 创建16个红球
+        for (var i = 1; i <= 16; i++) {
+            // 创建p标签
+            var p = document.createElement('p');
+            // 给p标签内部添加数字
+            p.innerText = i;
+            // 给这个p添加一个data-n属性
+            p.setAttribute('data-n', i);
+            // 追加孤儿节点
+            bluebox.appendChild(p);
+        }
+
+        // 数组，当前已经选中的红球
+        var nowred = [];
+        // 一个数字，当前的篮球
+        var nowblue;
+
+        // 给红球添加监听，事件委托
+        redbox.onclick = function (e) {
+            // 如果点击的元素是p标签
+            if (e.target.nodeName.toLowerCase() == 'p') {
+                // 读取那个data-n属性
+                var n = Number(e.target.getAttribute('data-n'));
+
+                // 判断数组中有没有它，如果数组中有它，就要从数组删除它，并且去掉它的类名
+                if (nowred.includes(n)) {
+                    // 如果有就从数组中删除它，删除就要遍历
+                    for (var i = 0; i < nowred.length; i++) {
+                        if (nowred[i] == n) {
+                            // 删除
+                            nowred.splice(i, 1);
+                        }
+                    }
+                    // 并且删除这个元素的类名
+                    e.target.className = '';
+                } else {
+                    // 如果没在数组中，判断有没有选6个
+                    if (nowred.length < 6) {
+                        // 就推入数组，并且添加类名
+                        nowred.push(n);
+                        // 添加类名
+                        e.target.className = 'cur';
+                    } else {
+                        // 超过（或者等于）6个了
+                        alert('最多选6个')
+                    }
+                }
+
+                // 不管是删除还是添加，都需要调用函数
+                showNumber();
+            }
+        }
+
+
+        // 给蓝球添加监听，事件委托
+        bluebox.onclick = function (e) {
+            // 如果点击的元素是p标签
+            if (e.target.nodeName.toLowerCase() == 'p') {
+                // 读取那个data-n属性
+                var n = Number(e.target.getAttribute('data-n'));
+
+                // 如果你点击的蓝球，就是当前选择的蓝球，表示取消选择
+                if (nowblue == n) {
+                    // 删除nowblue的值
+                    nowblue = undefined;
+                    // 并且删除这个元素的类名
+                    e.target.className = '';
+                } else {
+                    // 否则就是选择
+                    nowblue = n;
+
+                    // 去掉所有蓝球的类名
+                    var blueps = bluebox.getElementsByTagName('p');
+
+                    for (var i = 0; i < blueps.length; i++) {
+                        blueps[i].className = ''
+                    }
+
+                    // 它自己添加类名
+                    e.target.className = 'cur';
+                }
+
+                // 不管是删除还是添加，都需要调用函数
+                showNumber();
+            }
+        }
+
+        // 函数：显示文字
+        function showNumber() {
+            // 排序数组
+            nowred.sort(function (a, b) {
+                return a - b;
+            });
+            // 改变文字
+            wenzi.innerText = `当前选择的红球是:${nowred.join('，')}；篮球是${nowblue}`
+        }
+
+        // 随机一注按钮
+        suiji.onclick = function () {
+            // 以前讲过，以前有一个题目啊，33选6个不能重复啊，用while循环啊！
+            // 但是你忘了！所以要经常复习！！
+            // 但是你忘了！所以要经常复习！！
+            // 但是你忘了！所以要经常复习！！
+            var arr = [];
+
+            // 为了不重复啊，你也不知道循环多少次能凑出来不重复的6个数字，
+            // 所以用while啊
+            while (arr.length < 6) {
+                var a = parseInt(Math.random() * 33) + 1;
+                if (!arr.includes(a)) {
+                    arr.push(a);
+                }
+            }
+
+            // 让当前的数组成为你的数组
+            nowred = arr;
+
+            // 随机蓝球
+            nowblue = parseInt(Math.random() * 16) + 1;
+
+            // 显示数字
+            showNumber();
+
+            // 接下来，要让随机出来的小球都变红
+            // 得到所有p标签
+            var redps = redbox.getElementsByTagName('p');
+            var blueps = bluebox.getElementsByTagName('p');
+
+            // 遍历红色小球，如果数这个数组中的，就加cur，否则去掉cur
+            for (var i = 0; i < redps.length; i++) {
+                // 得到这个小球的n号
+                var n = Number(redps[i].getAttribute('data-n'));
+
+                // 如果你遍历到的这个小球在数组中
+                if (arr.includes(n)) {
+                    // 那么就加cur
+                    redps[i].className = 'cur';
+                } else {
+                    // 否则就去掉cur
+                    redps[i].className = '';
+                }
+            }
+
+            // 遍历蓝色小球，如果数这个数组中的，就加cur，否则去掉cur
+            for (var i = 0; i < blueps.length; i++) {
+                // 得到这个小球的n号
+                var n = Number(blueps[i].getAttribute('data-n'));
+
+                // 如果你遍历到的这个小球在数组中
+                if (nowblue == n) {
+                    // 那么就加cur
+                    blueps[i].className = 'cur';
+                } else {
+                    // 否则就去掉cur
+                    blueps[i].className = '';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

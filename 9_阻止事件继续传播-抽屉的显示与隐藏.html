@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .drawer {
+            position: absolute;
+            height: 100%;
+            width: 500px;
+            background-color: rgb(235, 236, 160);
+            right: -500px;
+            top: 0;
+            box-shadow: 0px 0px 12px rgba(0, 0, 0, .5);
+            /* 过渡 */
+            transition: all .4s ease 0s;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button id="btn">按我弹出抽屉</button>
+    <div class="drawer" id="drawer"></div>
+
+    <script>
+        // 点击按钮弹出抽屉，然后点击页面任何地方，都可以关闭抽屉。
+        var btn = document.getElementById('btn');
+        var drawer = document.getElementById('drawer');
+        // 点击按钮弹出抽屉
+        btn.onclick = function (e) {
+            e.stopPropagation();
+            drawer.style.right = '0px'
+        }
+        // 点击页面的时候抽屉消失
+        document.onclick = function () {
+            drawer.style.right = '-500px'
+        }
+        // 抽屉写一个点击事件，点击抽屉不关闭
+        drawer.onclick = function (e) {
+            // 阻止事件继续传播，这样一来，点击抽屉的领域，不会引发关闭
+            e.stopPropagation();
+        }
+
+    </script>
+</body>
+
+</html>

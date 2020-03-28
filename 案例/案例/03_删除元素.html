@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: orange;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">删除box</button>
+    <div id="box">我是盒子</div>
+    
+ 
+    <script>
+        var box = document.querySelector('#box');
+        var btn = document.querySelector('#btn');
+
+        btn.onclick = function () {
+            // 要死，找父亲删除你
+            document.body.removeChild(box);
+
+            // 万金油：
+            // box.parentNode.removeChild(box);
+        }
+    </script>
+</body>
+
+</html>

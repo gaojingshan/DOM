@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text {
+            font-size: 26px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <button id="btnBig">字号增加</button>
+        <button id="btnSmall">字号减小</button>
+    </p>
+    <p id="show">当前字号26</p>
+    <p id="text" class="text">大家一定要加油，不要放弃</p>
+    <script>
+        var btnBig = document.getElementById('btnBig');
+        var btnSmall = document.getElementById('btnSmall');
+        var show = document.getElementById('show');
+        var text = document.getElementById('text');
+        // 获取文本字号
+        var fsize = parseInt(getComputedStyle(text).fontSize);
+        btnBig.onclick = function () {
+            // 点击一次字号增加2px
+            fsize += 2;
+            // 显示字号大小
+            show.innerHTML = `当前字号${fsize}`;
+            // 把获得的值渲染到文本上
+            text.style.fontSize = fsize + 'px';
+            if (fsize == 30) {
+                btnBig.setAttribute('disabled', 'disabled');
+            }
+            btnSmall.removeAttribute('disabled');
+        }
+        btnSmall.onclick = function () {
+            // 点击一次字号减小2px
+            fsize -= 2;
+            // 显示字号大小
+            show.innerHTML = `当前字号${fsize}`;
+            // 把获得的值渲染到文本上
+            text.style.fontSize = fsize + 'px';
+            if (fsize == 20) {
+                btnSmall.setAttribute('disabled', 'disabled');
+            }
+            btnBig.removeAttribute('disabled');
+        }
+    </script>
+</body>
+
+</html>

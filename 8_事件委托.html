@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            overflow: hidden;
+            list-style: none;
+        }
+
+        li {
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">点击添加li</button>
+    <ul id="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        // 问题：做一个效果，页面上多个li，点击谁，谁红。
+        var btn = document.getElementById('btn');
+        var list = document.getElementById('list');
+        var lis = list.getElementsByTagName('li');
+        // 点击哪个li，自己就变红
+        // 有bug， 动态上树的新li，是没有监听的，所以不能变红;如果批量添加监听，那么还会内存占用较多
+        /* for (var i = 0; i < lis.length; i++) {
+            (function (i) {
+                lis[i].onclick = function () {
+                    lis[i].style.backgroundColor = 'red'
+                }
+            })(i)
+        } */
+
+        // 给list添加点击事件
+        list.onclick = function (e) {
+            // e.target就表示你点击的最内层元素
+            // nodeName表示标签名，toLowerCase表示转为小写
+            // 如果你点击的这个元素的节点名（就是标签名）的小写是li
+            if (e.target.nodeName.toLowerCase() == 'li') {
+                e.target.style.backgroundColor = 'red';
+            }
+        }
+
+        // 添加li标签
+        btn.onclick = function () {
+            var newLi = document.createElement('li');
+            list.appendChild(newLi);
+        }
+    </script>
+</body>
+
+</html>

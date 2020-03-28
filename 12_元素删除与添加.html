@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li button {
+            margin-left: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <input type="text" id="text">
+        <button id="btn">添加</button>
+    </p>
+    <ul id="list">
+        <li>苹果<button>删除</button></li>
+        <li>西瓜<button>删除</button></li>
+        <li>鸭梨<button>删除</button></li>
+    </ul>
+    <script>
+        var text = document.getElementById('text');
+        var btn = document.getElementById('btn');
+        var list = document.getElementById('list');
+        var lis = document.getElementsByTagName('li');
+        // 一上来文本框聚焦
+        text.focus();
+        // 添加
+        btn.onclick = function () {
+            var li = document.createElement('li');
+            li.innerHTML = text.value + '<button>删除</button>';
+            list.appendChild(li);
+            text.value = '';
+            text.focus();
+        }
+        // 删除
+        list.onmouseover = function (e) {
+            if (e.target.nodeName.toLowerCase() == 'button') {
+                for (var i = 0; i < lis.length; i++) {
+                    (function (i) {
+                        lis[i].onclick = function () {
+                            console.log(i);
+                            list.removeChild(lis[i]);
+                        }
+                    })(i)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

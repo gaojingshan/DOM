@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+        p{
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">按我</button>
+    <div id="box1">
+        <p id="para1">我是段落1</p>
+        <p>我是段落2</p>
+    </div>
+    <div id="box2">
+        <p>我是段落3</p>
+        <p>我是段落4</p>
+    </div>
+    <script>
+        var para1 = document.querySelector('#para1');
+        var box2 = document.querySelector('#box2');
+        var btn = document.querySelector('#btn');
+
+        btn.onclick = function () {
+            // 克隆，圆括号中只要加一个true，就是深克隆，
+            // 深克隆：这个元素和里面的文字、子元素都会被一并克隆
+            var cnode = para1.cloneNode(true);
+            // 克隆出来的节点是孤儿节点，需要上树
+            box2.appendChild(cnode);
+        }
+    </script>
+</body>
+</html>

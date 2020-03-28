@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li input {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>我喜欢的明星</h3>
+        <ul id="love">
+            <li>
+                <input type="checkbox">易烊千玺
+            </li>
+            <li>
+                <input type="checkbox">王俊凯
+            </li>
+            <li>
+                <input type="checkbox">王一博
+            </li>
+        </ul>
+        <button id="btn1">把选择的改为不喜欢</button>
+    </div>
+    <div>
+        <h3>我不喜欢的明星</h3>
+        <ul id="hate">
+            <li>
+                <input type="checkbox">周杰伦
+            </li>
+            <li>
+                <input type="checkbox">陈奕迅
+            </li>
+        </ul>
+        <button id="btn2">把选择的改为喜欢</button>
+    </div>
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var love = document.getElementById('love');
+        var hate = document.getElementById('hate');
+
+        btn1.onclick = function () {
+            var li = love.getElementsByTagName('li');
+            for (var i = 0; i < li.length; i++) {
+                (function (i) {
+                    // 获得选中的元素
+                    var checked = li[i].firstElementChild.checked;
+                    if (checked) {
+                        console.log(i);
+
+                        hate.appendChild(li[i]);
+                    }
+                })(i)
+            }
+        }
+        btn2.onclick = function () {
+            var li = hate.getElementsByTagName('li');
+            for (var i = 0; i < li.length; i++) {
+                (function (i) {
+                    // 获得选中的元素
+                    var checked = li[i].firstElementChild.checked;
+                    var arr = [];
+                    if (checked) {
+                        console.log(i);
+
+                        arr.push(li[i])
+                        console.log(arr);
+
+                        // love.appendChild();
+                    }
+                })(i)
+            }
+        }
+    </script>
+</body>
+
+</html>

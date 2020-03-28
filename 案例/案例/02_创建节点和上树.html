@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="kuang">
+    <button id="btn1">按我appendChild</button>
+    <button id="btn2">按我insertBefore</button>
+    <ul id="list"></ul>
+
+    <script>
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.querySelector('#btn2');
+        var list = document.querySelector('#list');
+        var kuang = document.querySelector('#kuang');
+
+        btn1.onclick = function () {
+            // 创建li标签
+            var li = document.createElement('li');
+            // 改变li里面的内容为框的内容
+            li.innerText = kuang.value;
+            // 创建的节点是孤儿节点，必须要添加到DOM树中
+            list.appendChild(li);
+            // 让文本框清空
+            kuang.value = '';
+            // 让文本框得到焦点
+            kuang.focus();
+        }
+
+        btn2.onclick = function () {
+            // 创建li标签
+            var li = document.createElement('li');
+            // 改变li里面的内容为框的内容
+            li.innerText = kuang.value;
+            // 创建的节点是孤儿节点，必须要添加到DOM树中
+            list.insertBefore(li, list.firstChild);
+            // 让文本框清空
+            kuang.value = '';
+            // 让文本框得到焦点
+            kuang.focus();
+        }
+    </script>
+</body>
+
+</html>

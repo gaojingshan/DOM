@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            padding: 50px;
+            border: 1px solid #000;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            padding: 50px;
+            border: 1px solid #000;
+        }
+
+        #box3 {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #000;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div id="box3">
+            </div>
+        </div>
+    </div>
+    <script>
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+        // onmouseenter 不冒泡  有bug,从外面进入里面可以触发，但是从里面到外面去就不能触发了
+        box3.onmouseenter = function () {
+            console.log('我是box3的onmouseenter');
+        }
+        box2.onmouseenter = function () {
+            console.log('我是box2的onmouseenter');
+        }
+        box1.onmouseenter = function () {
+            console.log('我是box1的onmouseenter');
+        }
+
+        // onmouseover 冒泡
+        /* box3.onmouseover = function (e) {
+            e.stopPropagation();
+            console.log('我是box3的onmouseover');
+        }
+        box2.onmouseover = function (e) {
+            e.stopPropagation();
+            console.log('我是box2的onmouseover');
+        }
+        box1.onmouseover = function (e) {
+            e.stopPropagation();
+            console.log('我是box1的onmouseover');
+        } */
+    </script>
+
+
+</body>
+
+</html>
