@@ -45,21 +45,21 @@
             hate.appendChild(li);
         }
 
-        
+
         // 喜欢选择添加到不喜欢里面
         love.onclick = function (e) {
             if (e.target.nodeName.toLowerCase() == 'input') {
                 loveArr2.push(e.target);
-                // e.target.checked = 'false';
             }
             btn1.onclick = function () {
                 for (var i = 0; i < loveArr2.length; i++) {
                     hate.appendChild(loveArr2[i].parentNode)
                     loveArr2[i].checked = false;
                 }
+                loveArr2 = [];
             }
         }
-        
+
         // 不喜欢选择添加到喜欢里面
         hate.onclick = function (e) {
             if (e.target.nodeName.toLowerCase() == 'input') {
@@ -71,6 +71,7 @@
                     love.appendChild(hateArr2[i].parentNode)
                     hateArr2[i].checked = false;
                 }
+                hateArr2 = [];
             }
         }
     </script>
