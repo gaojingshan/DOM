@@ -15,29 +15,12 @@
 <body>
     <div>
         <h3>我喜欢的明星</h3>
-        <ul id="love">
-            <li>
-                <input type="checkbox">易烊千玺
-            </li>
-            <li>
-                <input type="checkbox">王俊凯
-            </li>
-            <li>
-                <input type="checkbox">王一博
-            </li>
-        </ul>
+        <ul id="love"></ul>
         <button id="btn1">把选择的改为不喜欢</button>
     </div>
     <div>
         <h3>我不喜欢的明星</h3>
-        <ul id="hate">
-            <li>
-                <input type="checkbox">周杰伦
-            </li>
-            <li>
-                <input type="checkbox">陈奕迅
-            </li>
-        </ul>
+        <ul id="hate"></ul>
         <button id="btn2">把选择的改为喜欢</button>
     </div>
     <script>
@@ -45,37 +28,49 @@
         var btn2 = document.getElementById('btn2');
         var love = document.getElementById('love');
         var hate = document.getElementById('hate');
+        var loveArr = ['易烊千玺', '王俊凯', '王一博'];
+        var loveArr2 = [];
+        var hateArr = ['周杰伦', '陈奕迅']
+        var hateArr2 = [];
+        // 添加loveArr的元素
+        for (var i = 0; i < loveArr.length; i++) {
+            var li = document.createElement('li');
+            li.innerHTML = `<input type='checkbox'>${loveArr[i]}`;
+            love.appendChild(li);
+        }
+        // 添加hateArr的元素
+        for (var i = 0; i < hateArr.length; i++) {
+            var li = document.createElement('li');
+            li.innerHTML = `<input type='checkbox'>${hateArr[i]}`;
+            hate.appendChild(li);
+        }
 
-        btn1.onclick = function () {
-            var li = love.getElementsByTagName('li');
-            for (var i = 0; i < li.length; i++) {
-                (function (i) {
-                    // 获得选中的元素
-                    var checked = li[i].firstElementChild.checked;
-                    if (checked) {
-                        console.log(i);
-
-                        hate.appendChild(li[i]);
-                    }
-                })(i)
+        
+        // 喜欢选择添加到不喜欢里面
+        love.onclick = function (e) {
+            if (e.target.nodeName.toLowerCase() == 'input') {
+                loveArr2.push(e.target);
+                // e.target.checked = 'false';
+            }
+            btn1.onclick = function () {
+                for (var i = 0; i < loveArr2.length; i++) {
+                    hate.appendChild(loveArr2[i].parentNode)
+                    loveArr2[i].checked = false;
+                }
             }
         }
-        btn2.onclick = function () {
-            var li = hate.getElementsByTagName('li');
-            for (var i = 0; i < li.length; i++) {
-                (function (i) {
-                    // 获得选中的元素
-                    var checked = li[i].firstElementChild.checked;
-                    var arr = [];
-                    if (checked) {
-                        console.log(i);
-
-                        arr.push(li[i])
-                        console.log(arr);
-
-                        // love.appendChild();
-                    }
-                })(i)
+        
+        // 不喜欢选择添加到喜欢里面
+        hate.onclick = function (e) {
+            if (e.target.nodeName.toLowerCase() == 'input') {
+                hateArr2.push(e.target);
+                // e.target.checked = 'false';
+            }
+            btn2.onclick = function () {
+                for (var i = 0; i < hateArr2.length; i++) {
+                    love.appendChild(hateArr2[i].parentNode)
+                    hateArr2[i].checked = false;
+                }
             }
         }
     </script>
