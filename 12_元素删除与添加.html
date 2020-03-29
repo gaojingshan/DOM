@@ -38,16 +38,10 @@
             text.focus();
         }
         // 删除
-        list.onmouseover = function (e) {
+        list.onclick = function (e) {
             if (e.target.nodeName.toLowerCase() == 'button') {
-                for (var i = 0; i < lis.length; i++) {
-                    (function (i) {
-                        lis[i].onclick = function () {
-                            console.log(i);
-                            list.removeChild(lis[i]);
-                        }
-                    })(i)
-                }
+                // 删除你点击的这个按钮的父节点
+                list.removeChild(e.target.parentNode)
             }
         }
     </script>
