@@ -34,9 +34,11 @@
             // 把获得的值渲染到文本上
             text.style.fontSize = fsize + 'px';
             if (fsize == 30) {
-                btnBig.setAttribute('disabled', 'disabled');
+                btnBig.disabled = 'disabled';
+                // btnBig.setAttribute('disabled', 'disabled');
             }
-            btnSmall.removeAttribute('disabled');
+            btnSmall.disabled = '';
+            // btnSmall.removeAttribute('disabled');
         }
         btnSmall.onclick = function () {
             // 点击一次字号减小2px
@@ -46,9 +48,11 @@
             // 把获得的值渲染到文本上
             text.style.fontSize = fsize + 'px';
             if (fsize == 20) {
-                btnSmall.setAttribute('disabled', 'disabled');
+                // btnSmall.setAttribute('disabled', 'disabled');
+                btnSmall.disabled = 'disabled';
             }
-            btnBig.removeAttribute('disabled');
+            // btnBig.removeAttribute('disabled');
+            btnBig.disabled = '';
         }
     </script>
 </body>
