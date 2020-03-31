@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <button id="shun">按我盒子顺时针旋转</button>
+        <button id="ni">按我盒子逆时针旋转</button>
+    </p>
+    <div id="box" class="box"></div>
+    <script>
+        var shun = document.getElementById('shun');
+        var ni = document.getElementById('ni');
+        var box = document.getElementById('box');
+        var a = 0;
+        var timer;
+        shun.onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                a += 2;
+                box.style.transform = 'rotate(' + a + 'deg)';
+            }, 20)
+        }
+        ni.onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                a -= 2;
+                box.style.transform = 'rotate(' + a + 'deg)';
+            }, 20)
+        }
+    </script>
+</body>
+
+</html>

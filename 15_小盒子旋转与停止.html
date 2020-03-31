@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <button id="rotate">旋转</button>
+        <button id="stop">停止</button>
+    </p>
+    <div id="box" class="box"></div>
+    <script>
+        var rotate = document.getElementById('rotate');
+        var stop = document.getElementById('stop');
+        var box = document.getElementById('box');
+        // 信号量 
+        var a = 0;
+        var timer;
+        rotate.onclick = function () {
+            timer = setInterval(function () {
+                a += 4;
+                box.style.transform = 'rotate(' + a + 'deg)';
+            }, 20)
+            rotate.disabled = 'disabled'
+        }
+        stop.onclick = function () {
+            clearInterval(timer);
+            rotate.disabled = '';
+        }
+
+    </script>
+</body>
+
+</html>
