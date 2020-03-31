@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 1000px;
+            margin: 50px auto;
+            height: 201px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+
+        .box ul {
+            width: 9000px;
+            list-style: none;
+            position: relative;
+        }
+
+        .box ul li {
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <ul id="list">
+            <li><a href=""><img src="images/1.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/5.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/6.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/7.jpg" alt=""></a></li>
+        </ul>
+    </div>
+    <script>
+        // 无缝连续滚动
+        var box = document.getElementById('box');
+        var list = document.getElementById('list');
+        var left = 0;
+        list.innerHTML += list.innerHTML;
+        var timer;
+        function open() {
+            timer = setInterval(function () {
+                left -= 4;
+                if (left < -234 * 7) {
+                    left = 0;
+                }
+                list.style.left = left + 'px';
+            }, 20)
+        }
+        
+        // 一上来就开
+        open();
+
+        box.onmouseenter = function () {
+            clearInterval(timer)
+        }
+        box.onmouseleave = function () {
+            open();
+        }
+    </script>
+</body>
+
+</html>
