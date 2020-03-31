@@ -5,67 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        li input {
-            margin-right: 8px;
-        }
-    </style>
 </head>
 
 <body>
-    <div>
-        <h3>我喜欢的明星</h3>
-        <ul id="love">
-            <li><input type="checkbox" class="checkbox">易烊千玺</li>
-            <li><input type="checkbox" class="checkbox">王俊凯</li>
-            <li><input type="checkbox" class="checkbox">王一博</li>
-        </ul>
-        <button id="btn1">把选择的改为不喜欢</button>
-    </div>
-    <div>
-        <h3>我不喜欢的明星</h3>
-        <ul id="hate">
-            <li><input type="checkbox" class="checkbox">周杰伦</li>
-            <li><input type="checkbox" class="checkbox">陈奕迅</li>
-        </ul>
-        <button id="btn2">把选择的改为喜欢</button>
-    </div>
+    <h3>我喜欢的明星</h3>
+    <ul id="love">
+        <li><input type="checkbox">易烊千玺</li>
+        <li><input type="checkbox">王俊凯</li>
+        <li><input type="checkbox">王一博</li>
+    </ul>
+    <button id="btn1">把选择的改为不喜欢</button>
+
+    <h3>我不喜欢的明星</h3>
+    <ul id="hate">
+        <li><input type="checkbox">周杰伦</li>
+        <li><input type="checkbox">陈奕迅</li>
+    </ul>
+    <button id="btn2">把选择的改为喜欢</button>
     <script>
         var btn1 = document.getElementById('btn1');
-        var btn2 = document.getElementById('btn2');
         var love = document.getElementById('love');
+        var btn2 = document.getElementById('btn2');
         var hate = document.getElementById('hate');
-        var loveLi = love.getElementsByTagName('li');
-        var hateLi = hate.getElementsByTagName('li');
-        var checkboxs = document.getElementsByClassName('checkbox');
-        // 清除所有的勾
-        function qingGou() {
-            for (var i = 0; i < checkboxs.length; i++) {
-                checkboxs[i].checked = false;
-            }
-        }
-        // 喜欢选择添加到不喜欢里面
         btn1.onclick = function () {
-            for (var i = 0; i < loveLi.length; i++) {
-                if (loveLi[i].querySelector('input').checked) {
-                    hate.appendChild(loveLi[i])
+            var li = love.getElementsByTagName('li');
+            // 遍历所有love中的li，看谁里面的input是打钩的
+            for (var i = 0; i < li.length; i++) {
+                var checkbox = li[i].querySelector('input');
+                // 如果复选框是勾选状态
+                if (checkbox.checked) {
+                    // 移动走
+                    hate.appendChild(li[i]);
                     i--;
+                    // 去掉对勾,checkbox就是那个对勾啊，即使它移动走了，也是对勾啊
+                    checkbox.checked = false;
                 }
             }
-            qingGou();
         }
-
-        // 不喜欢选择添加到喜欢里面
         btn2.onclick = function () {
-            for (var i = 0; i < hateLi.length; i++) {
-                if (hateLi[i].querySelector('input').checked) {
-                    love.appendChild(hateLi[i]);
+            var li = hate.getElementsByTagName('li');
+            for (var i = 0; i < li.length; i++) {
+                checkbox = li[i].querySelector('input');
+                if (checkbox.checked) {
+                    love.appendChild(li[i]);
                     i--;
+                    checkbox.checked = false;
                 }
             }
-            qingGou();
         }
-
     </script>
 </body>
 

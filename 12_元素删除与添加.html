@@ -14,8 +14,8 @@
 
 <body>
     <p>
-        <input type="text" id="text">
-        <button id="btn">添加</button>
+        <input type="text" id="kuang">
+        <button id="add">添加</button>
     </p>
     <ul id="list">
         <li>苹果<button>删除</button></li>
@@ -23,20 +23,20 @@
         <li>鸭梨<button>删除</button></li>
     </ul>
     <script>
-        var text = document.getElementById('text');
-        var btn = document.getElementById('btn');
+        var kuang = document.getElementById('kuang');
         var list = document.getElementById('list');
-        var lis = document.getElementsByTagName('li');
+        var add = document.getElementById('add');
         // 一上来文本框聚焦
-        text.focus();
-        // 添加
-        btn.onclick = function () {
+        kuang.focus();
+        // 添加，聚焦
+        add.onclick = function () {
             var li = document.createElement('li');
-            li.innerHTML = text.value + '<button>删除</button>';
+            li.innerHTML = kuang.value + '<button>删除</button>';
             list.appendChild(li);
-            text.value = '';
-            text.focus();
+            kuang.value = '';
+            kuang.focus();
         }
+
         // 删除
         list.onclick = function (e) {
             if (e.target.nodeName.toLowerCase() == 'button') {
